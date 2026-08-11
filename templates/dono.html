@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Área do Dono</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(180deg, #100018, #300052);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 550px;
+    margin: auto;
+    padding: 15px;
+}
+
+.card {
+    background: #1d002e;
+    border: 1px solid #7d2ca8;
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    color: #d27cff;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 6px 0 12px;
+    border-radius: 10px;
+    border: 1px solid #7432a0;
+    background: #100018;
+    color: white;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 7px;
+}
+
+.salvar {
+    background: #8c2bd1;
+}
+
+.aceitar {
+    background: #16853d;
+}
+
+.recusar {
+    background: #a52828;
+}
+
+.copiar {
+    background: #6131a5;
+}
+
+.liberar {
+    background: #147d8c;
+}
+
+.deletar {
+    background: #8d2424;
+}
+
+.sair {
+    background: #4d1d68;
+}
+
+.pedido,
+.bloqueio,
+.aceito {
+    background: #2a0042;
+    padding: 14px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.info {
+    line-height: 1.7;
+    word-break: break-word;
+}
+
+.vaga-atual {
+    color: #76ff9b;
+    font-weight: bold;
+}
+
+.tempo {
+    color: #ffd45c;
+    font-weight: bold;
+}
+
+.vazio {
+    text-align: center;
+    color: #c9a6d7;
+    padding: 12px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<div class="card">
+
+<h1>👑 ÁREA DO DONO</h1>
+
+<p style="text-align:center;">
+Área somente do dono.
+</p>
+
+</div>
+
+
+<!-- CONTROLE DE VAGAS -->
+
+<div class="card">
+
+<h2>🎟️ CONTROLE DE VAGAS</h2>
+
+<p>
+Coloque diretamente a quantidade que deseja deixar disponível.
+</p>
+
+<form action="/vagas" method="POST">
+
+<label>
+DIVULGADOR
+</label>
+
+<div class="vaga-atual">
+Atual: {{ vagas["DIVULGADOR"] }}
+</div>
+
+<input
+type="number"
+name="divulgador"
+value="{{ vagas['DIVULGADOR'] }}"
+min="0"
+required
+>
+
+
+<label>
+VIP PREMIUM
+</label>
+
+<div class="vaga-atual">
+Atual: {{ vagas["VIP PREMIUM"] }}
+</div>
+
+<input
+type="number"
+name="vip_premium"
+value="{{ vagas['VIP PREMIUM'] }}"
+min="0"
+required
+>
+
+
+<label>
+ADM
+</label>
+
+<div class="vaga-atual">
+Atual: {{ vagas["ADM"] }}
+</div>
+
+<input
+type="number"
+name="adm"
+value="{{ vagas['ADM'] }}"
+min="0"
+required
+>
+
+
+<button class="salvar" type="submit">
+💾 SALVAR VAGAS
+</button>
+
+</form>
+
+</div>
+
+
+<!-- PEDIDOS -->
+
+<div class="card">
+
+<h2>📥 PEDIDOS RECEBIDOS</h2>
+
+{% if pedidos %}
+
+{% for pedido in pedidos %}
+
+<div class="pedido">
+
+<div class="info">
+
+<b>Nome:</b>
+{{ pedido["nome"] }}
+
+<br>
+
+<b>ID DO FREE FIRE:</b>
+{{ pedido["idff"] }}
+
+<br>
+
+<b>Opção:</b>
+{{ pedido["cargo"] }}
+
+<br>
+
+<b>Contato:</b>
+{{ pedido["contato"] }}
+
+<br>
+
+<b>Meio:</b>
+{{ pedido["meio"] }}
+
+</div>
+
+
+<form
+action="/aceitar/{{ pedido['id'] }}"
+method="POST"
+>
+
+<button class="aceitar">
+✅ ACEITAR
+</button>
+
+</form>
+
+
+<form
+action="/recusar/{{ pedido['id'] }}"
+method="POST"
+>
+
+<button class="recusar">
+❌ RECUSAR
+</button>
+
+</form>
+
+
+<button
+class="copiar"
+type="button"
+onclick="copiar('{{ pedido['contato'] }}')"
+>
+
+📋 COPIAR CONTATO
+
+</button>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="vazio">
+Nenhum pedido recebido.
+</div>
+
+{% endif %}
+
+</div>
+
+
+<!-- BLOQUEIOS -->
+
+<div class="card">
+
+<h2>🔓 LIBERAR ACESSO</h2>
+
+{% if bloqueios %}
+
+{% for bloqueio in bloqueios %}
+
+<div class="bloqueio">
+
+<div class="info">
+
+<b>Nome:</b>
+{{ bloqueio["nome"] }}
+
+<br>
+
+<b>Contato:</b>
+{{ bloqueio["contato"] }}
+
+<br>
+
+<span
+class="tempo"
+data-tempo="{{ bloqueio['liberado_em'] }}"
+>
+Calculando...
+</span>
+
+</div>
+
+
+<form
+action="/liberar/{{ bloqueio['id'] }}"
+method="POST"
+>
+
+<button class="liberar">
+🔓 LIBERAR NOVO PEDIDO
+</button>
+
+</form>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="vazio">
+Nenhuma pessoa aguardando.
+</div>
+
+{% endif %}
+
+</div>
+
+
+<!-- ACEITOS -->
+
+<div class="card">
+
+<h2>✅ ACEITOS</h2>
+
+{% if aceitos %}
+
+{% for aceito in aceitos %}
+
+<div class="aceito">
+
+<b>{{ aceito["nome"] }}</b>
+
+<p>
+
+ID: {{ aceito["idff"] }}<br>
+Cargo: {{ aceito["cargo"] }}<br>
+Contato: {{ aceito["contato"] }}<br>
+Meio: {{ aceito["meio"] }}
+
+</p>
+
+
+<form
+action="/deletar-aceito/{{ aceito['id'] }}"
+method="POST"
+>
+
+<button class="deletar">
+🗑️ DELETAR
+</button>
+
+</form>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="vazio">
+Nenhum pedido aceito.
+</div>
+
+{% endif %}
+
+</div>
+
+
+<div class="card">
+
+<form action="/sair" method="GET">
+
+<button class="sair">
+🚪 SAIR
+</button>
+
+</form>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function copiar(texto) {
+
+    if (navigator.clipboard) {
+
+        navigator.clipboard.writeText(texto);
+
+        alert("✅ Contato copiado!");
+
+    } else {
+
+        alert("Não foi possível copiar automaticamente.");
+
+    }
+}
+
+
+function atualizarTempo() {
+
+    var elementos =
+        document.querySelectorAll("[data-tempo]");
+
+    var agora =
+        Math.floor(Date.now() / 1000);
+
+    elementos.forEach(function(elemento) {
+
+        var fim =
+            Number(
+                elemento.getAttribute("data-tempo")
+            );
+
+        var restante = fim - agora;
+
+        if (restante <= 0) {
+
+            elemento.textContent =
+                "✅ Liberado";
+
+            return;
+        }
+
+        var horas =
+            Math.floor(restante / 3600);
+
+        var minutos =
+            Math.floor(
+                (restante % 3600) / 60
+            );
+
+        var segundos =
+            restante % 60;
+
+        elemento.textContent =
+            "⏳ "
+            + horas + "h "
+            + minutos + "min "
+            + segundos + "s";
+
+    });
+}
+
+
+atualizarTempo();
+
+setInterval(
+    atualizarTempo,
+    1000
+);
+
+</script>
+
+</body>
+</html>

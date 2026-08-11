@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VIP CAUAN01</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(180deg, #100018, #300052);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 520px;
+    margin: auto;
+    padding: 15px;
+}
+
+.card {
+    background: #1d002e;
+    border: 1px solid #7d2ca8;
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 23px;
+}
+
+h2 {
+    color: #d27cff;
+}
+
+.dono {
+    text-align: center;
+    color: #d27cff;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 1px solid #7432a0;
+    background: #100018;
+    color: white;
+    font-size: 16px;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #2a0042;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.opcao input {
+    width: 20px;
+    margin: 0;
+}
+
+.meio {
+    display: flex;
+    gap: 8px;
+}
+
+.meio label {
+    flex: 1;
+    background: #2a0042;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.meio input {
+    width: auto;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: 0;
+    border-radius: 10px;
+    background: #8c2bd1;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.vagas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.vaga {
+    background: #2a0042;
+    border-radius: 10px;
+    padding: 12px 5px;
+    text-align: center;
+}
+
+.numero {
+    display: block;
+    color: #76ff9b;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.mensagem {
+    background: #3a0753;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+Faça seu pedido de VIP aqui
+</h1>
+
+<p style="text-align:center;">
+100% grátis, só esperar vagas
+</p>
+
+<p class="dono">
+DONO: CAUAN01
+</p>
+
+<button onclick="location.reload()">
+🔄 ATUALIZAR
+</button>
+
+</div>
+
+
+{% if mensagem %}
+
+<div class="mensagem">
+
+{% if mensagem == "sucesso" %}
+✅ Envio bem sucedido!<br>
+Iremos avaliar. Próximo envio em 24h.
+
+{% elif mensagem == "24h" %}
+⏳ Você já fez um pedido.<br>
+Aguarde 24 horas.
+
+{% elif mensagem == "semvaga" %}
+❌ Não há vagas disponíveis.
+
+{% elif mensagem == "senha" %}
+❌ Senha incorreta.
+
+{% elif mensagem == "preencha" %}
+⚠️ Preencha todas as informações.
+
+{% elif mensagem == "opcao" %}
+⚠️ Escolha uma opção válida.
+
+{% elif mensagem == "contato" %}
+⚠️ Escolha WhatsApp ou Instagram.
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+
+<div class="card">
+
+<h2 style="text-align:center;">
+🎟️ VAGAS
+</h2>
+
+<div class="vagas">
+
+<div class="vaga">
+DIVULGADOR
+<span class="numero">
+{{ vagas["DIVULGADOR"] }}
+</span>
+</div>
+
+<div class="vaga">
+VIP PREMIUM
+<span class="numero">
+{{ vagas["VIP PREMIUM"] }}
+</span>
+</div>
+
+<div class="vaga">
+ADM
+<span class="numero">
+{{ vagas["ADM"] }}
+</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📝 FAÇA SEU PEDIDO</h2>
+
+<form action="/pedido" method="POST">
+
+<label>Nome real:</label>
+
+<input
+type="text"
+name="nome"
+placeholder="Digite seu nome"
+required
+>
+
+
+<label>ID DO FREE FIRE:</label>
+
+<input
+type="text"
+name="idff"
+placeholder="Digite seu ID"
+required
+>
+
+
+<label>Escolha uma opção:</label>
+
+
+<label class="opcao">
+
+DIVULGADOR
+
+<input
+type="radio"
+name="cargo"
+value="DIVULGADOR"
+{% if vagas["DIVULGADOR"] <= 0 %}disabled{% endif %}
+required
+>
+
+</label>
+
+
+<label class="opcao">
+
+VIP PREMIUM
+
+<input
+type="radio"
+name="cargo"
+value="VIP PREMIUM"
+{% if vagas["VIP PREMIUM"] <= 0 %}disabled{% endif %}
+>
+
+</label>
+
+
+<label class="opcao">
+
+ADM
+
+<input
+type="radio"
+name="cargo"
+value="ADM"
+{% if vagas["ADM"] <= 0 %}disabled{% endif %}
+>
+
+</label>
+
+
+<label>Telefone ou Instagram:</label>
+
+<input
+type="text"
+name="contato"
+placeholder="Número ou @Instagram"
+required
+>
+
+
+<p>
+Precisamos do meio de contato: seu número de telefone ou seu @ do Instagram.
+</p>
+
+
+<label>Meio de contato:</label>
+
+<div class="meio">
+
+<label>
+
+WhatsApp
+
+<input
+type="radio"
+name="meio"
+value="WhatsApp"
+required
+>
+
+</label>
+
+<label>
+
+Instagram
+
+<input
+type="radio"
+name="meio"
+value="Instagram"
+>
+
+</label>
+
+</div>
+
+
+<button type="submit">
+✅ CONFIRMAR
+</button>
+
+</form>
+
+</div>
+
+
+<div class="card">
+
+<h2>🔐 ÁREA RESTRITA</h2>
+
+<p>
+Essa é uma área restrita somente para o dono.
+</p>
+
+<form action="/login" method="POST">
+
+<input
+type="password"
+name="senha"
+placeholder="Digite a senha"
+required
+>
+
+<button type="submit">
+🔐 ACESSAR ÁREA DE DONO
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>
