@@ -8,194 +8,194 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-body{
-    margin:0;
-    min-height:100vh;
-    padding:20px;
-    color:#fff;
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
+    color: #fff;
     background:
-        radial-gradient(circle at top,#a855f7,transparent 40%),
-        linear-gradient(135deg,#08000d,#260039,#100018);
+        radial-gradient(circle at top, #a855f7, transparent 40%),
+        linear-gradient(135deg, #08000d, #260039, #100018);
 }
 
-.container{
-    max-width:520px;
-    margin:auto;
+.container {
+    max-width: 520px;
+    margin: auto;
 }
 
-.tela{
-    display:none;
+.tela {
+    display: none;
 }
 
-.tela.ativa{
-    display:block;
+.tela.ativa {
+    display: block;
 }
 
-.card{
-    background:#190326;
-    border:1px solid #9333ea;
-    border-radius:22px;
-    padding:25px;
-    box-shadow:0 0 30px #0008;
+.card {
+    background: #190326;
+    border: 1px solid #9333ea;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 0 30px #0008;
 }
 
-.icone{
-    width:65px;
-    height:65px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:linear-gradient(135deg,#c026d3,#7e22ce);
-    font-size:30px;
+.icone {
+    width: 65px;
+    height: 65px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c026d3, #7e22ce);
+    font-size: 30px;
 }
 
-h1{
-    text-align:center;
-    font-size:22px;
+h1 {
+    text-align: center;
+    font-size: 22px;
 }
 
-h2{
-    text-align:center;
+h2 {
+    text-align: center;
 }
 
-.descricao{
-    text-align:center;
-    color:#e9d5ff;
-    line-height:1.6;
+.descricao {
+    text-align: center;
+    color: #e9d5ff;
+    line-height: 1.6;
 }
 
-.instagram{
-    color:#f0abfc;
-    font-weight:bold;
-    text-decoration:none;
+.instagram {
+    color: #f0abfc;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-label{
-    display:block;
-    margin-top:17px;
-    margin-bottom:7px;
-    color:#e9d5ff;
-    font-size:13px;
-    font-weight:bold;
+label {
+    display: block;
+    margin-top: 17px;
+    margin-bottom: 7px;
+    color: #e9d5ff;
+    font-size: 13px;
+    font-weight: bold;
 }
 
-input{
-    width:100%;
-    padding:14px;
-    border-radius:10px;
-    border:1px solid #7e22ce;
-    background:#160021;
-    color:white;
-    outline:none;
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #7e22ce;
+    background: #160021;
+    color: white;
+    outline: none;
 }
 
-button{
-    width:100%;
-    padding:14px;
-    margin-top:13px;
-    border:0;
-    border-radius:10px;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    background:linear-gradient(135deg,#a855f7,#7e22ce);
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 13px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(135deg, #a855f7, #7e22ce);
 }
 
-button:active{
-    transform:scale(.98);
+button:active {
+    transform: scale(.98);
 }
 
-.voltar{
-    background:transparent;
-    border:1px solid #a855f7;
+.voltar {
+    background: transparent;
+    border: 1px solid #a855f7;
 }
 
-.mensagem{
-    margin-top:12px;
-    padding:10px;
-    border-radius:10px;
-    text-align:center;
+.mensagem {
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
 }
 
-.erro{
-    color:#fca5a5;
-    background:#ef444418;
+.erro {
+    color: #fca5a5;
+    background: #ef444418;
 }
 
-.sucesso{
-    color:#86efac;
-    background:#22c55e18;
+.sucesso {
+    color: #86efac;
+    background: #22c55e18;
 }
 
-.vip{
-    margin-top:18px;
-    padding:20px;
-    text-align:center;
-    border-radius:15px;
-    background:#a855f71f;
-    border:1px solid #9333ea;
+.vip {
+    margin-top: 18px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    background: #a855f71f;
+    border: 1px solid #9333ea;
 }
 
-.vip-titulo{
-    color:#d8b4fe;
-    font-size:13px;
+.vip-titulo {
+    color: #d8b4fe;
+    font-size: 13px;
 }
 
-.vip-valor{
-    margin-top:8px;
-    color:#f0abfc;
-    font-size:32px;
-    font-weight:bold;
+.vip-valor {
+    margin-top: 8px;
+    color: #f0abfc;
+    font-size: 32px;
+    font-weight: bold;
 }
 
-.secao{
-    margin-top:28px;
-    padding-top:22px;
-    border-top:1px solid #a855f755;
+.secao {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #a855f755;
 }
 
-.membro{
-    margin-top:13px;
-    padding:15px;
-    border-radius:12px;
-    background:#581c3533;
-    border:1px solid #a855f755;
+.membro {
+    margin-top: 13px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #581c3533;
+    border: 1px solid #a855f755;
 }
 
-.deletar{
-    background:linear-gradient(135deg,#ef4444,#991b1b);
+.deletar {
+    background: linear-gradient(135deg, #ef4444, #991b1b);
 }
 
-.info{
-    line-height:1.7;
-    color:#e9d5ff;
-    word-break:break-word;
+.info {
+    line-height: 1.7;
+    color: #e9d5ff;
+    word-break: break-word;
 }
 
-.vazio{
-    text-align:center;
-    color:#c4b5fd;
-    padding:15px;
+.vazio {
+    text-align: center;
+    color: #c4b5fd;
+    padding: 15px;
 }
 
-.secreto{
-    width:55px;
-    padding:5px;
-    margin:20px auto;
-    display:block;
-    font-size:9px;
-    opacity:.25;
+.secreto {
+    width: 55px;
+    padding: 5px;
+    margin: 20px auto;
+    display: block;
+    font-size: 9px;
+    opacity: .25;
 }
 
-#loginDono{
-    display:none;
+#loginDono {
+    display: none;
 }
 </style>
 </head>
@@ -204,8 +204,7 @@ button:active{
 
 <div class="container">
 
-<!-- ================= PRINCIPAL ================= -->
-
+<!-- PÁGINA PRINCIPAL -->
 <section id="principal" class="tela ativa">
 
 <div class="card">
@@ -221,10 +220,11 @@ quer ter a chance de ser ADM ou DIVULGADOR do nosso mapa?
 É só entrar em contato com o dono do mapa no insta
 
 <a
-href="https://www.instagram.com/cauan01/"
+href="https://www.instagram.com/caauan01/"
 target="_blank"
+rel="noopener noreferrer"
 class="instagram">
-@cauan01
+@caauan01
 </a>
 </p>
 
@@ -245,8 +245,7 @@ CONFIRMAR
 
 </div>
 
-<!-- Área escondida -->
-
+<!-- ÁREA ESCONDIDA -->
 <button
 class="secreto"
 onclick="cliqueSecreto()">
@@ -285,8 +284,7 @@ CONFIRMAR
 </section>
 
 
-<!-- ================= ÁREA DO CÓDIGO ================= -->
-
+<!-- ÁREA DO CÓDIGO -->
 <section id="areaCodigo" class="tela">
 
 <div class="card">
@@ -319,9 +317,7 @@ vc tera todas a senhas vips antecipadamente através desse site
 SENHA VIP ATUAL:
 </div>
 
-<div
-id="senhaVipPublica"
-class="vip-valor">
+<div id="senhaVipPublica" class="vip-valor">
 -
 </div>
 
@@ -338,8 +334,7 @@ VOLTAR
 </section>
 
 
-<!-- ================= ÁREA DOS DONOS ================= -->
-
+<!-- ÁREA DOS DONOS -->
 <section id="donos" class="tela">
 
 <div class="card">
@@ -362,7 +357,6 @@ VOLTAR
 
 
 <!-- ADICIONAR CÓDIGOS -->
-
 <div class="secao">
 
 <h2>
@@ -400,7 +394,7 @@ id="novoCodigo"
 placeholder="Código">
 
 <button onclick="adicionarMembro()">
-ADICONAR MEMBRO
+ADICIONAR MEMBRO
 </button>
 
 <div id="msgAdicionar"></div>
@@ -409,7 +403,6 @@ ADICONAR MEMBRO
 
 
 <!-- MEMBROS -->
-
 <div class="secao">
 
 <h2>
@@ -422,7 +415,6 @@ MEMBROS
 
 
 <!-- SENHA VIP -->
-
 <div class="secao">
 
 <h2>
@@ -457,7 +449,6 @@ class="vip-valor">
 
 
 <!-- TROCAR SENHA DONO -->
-
 <div class="secao">
 
 <h2>
@@ -499,9 +490,7 @@ CONFIRMAR
 
 <script>
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+/* SUPABASE */
 
 const SUPABASE_URL =
 "https://wngknfnansykjdquzpwz.supabase.co";
@@ -516,9 +505,7 @@ supabase.createClient(
 );
 
 
-/* =====================================================
-   CONFIGURAÇÕES
-===================================================== */
+/* CONFIGURAÇÃO */
 
 const CODIGO_PROMOCIONAL =
 "0101010101";
@@ -527,11 +514,9 @@ let cliques = 0;
 let timerCliques = null;
 
 
-/* =====================================================
-   TROCAR TELA
-===================================================== */
+/* TROCAR TELA */
 
-function mostrar(id){
+function mostrar(id) {
 
     document
     .querySelectorAll(".tela")
@@ -542,23 +527,17 @@ function mostrar(id){
     const tela =
     document.getElementById(id);
 
-    if(tela){
+    if (tela) {
         tela.classList.add("ativa");
     }
 
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 }
 
 
-/* =====================================================
-   MENSAGENS
-===================================================== */
+/* MENSAGEM */
 
-function mensagem(
-    id,
-    texto,
-    tipo
-){
+function mensagem(id, texto, tipo) {
 
     const elemento =
     document.getElementById(id);
@@ -571,11 +550,9 @@ function mensagem(
 }
 
 
-/* =====================================================
-   ESCAPAR TEXTO
-===================================================== */
+/* ESCAPAR TEXTO */
 
-function escapar(texto){
+function escapar(texto) {
 
     const div =
     document.createElement("div");
@@ -587,11 +564,9 @@ function escapar(texto){
 }
 
 
-/* =====================================================
-   VERIFICAR CÓDIGO DO MEMBRO
-===================================================== */
+/* VERIFICAR CÓDIGO */
 
-async function verificarCodigo(){
+async function verificarCodigo() {
 
     const codigo =
     document
@@ -599,7 +574,7 @@ async function verificarCodigo(){
     .value
     .trim();
 
-    if(!codigo){
+    if (!codigo) {
 
         mensagem(
             "msgCodigo",
@@ -610,16 +585,14 @@ async function verificarCodigo(){
         return;
     }
 
-
     const resultado =
     await db
     .from("membros")
     .select("*")
-    .eq("codigo",codigo)
+    .eq("codigo", codigo)
     .maybeSingle();
 
-
-    if(resultado.error){
+    if (resultado.error) {
 
         console.error(resultado.error);
 
@@ -632,8 +605,7 @@ async function verificarCodigo(){
         return;
     }
 
-
-    if(!resultado.data){
+    if (!resultado.data) {
 
         mensagem(
             "msgCodigo",
@@ -644,12 +616,10 @@ async function verificarCodigo(){
         return;
     }
 
-
     const vip =
     await obterVip();
 
-
-    if(vip === null){
+    if (vip === null) {
 
         mensagem(
             "msgCodigo",
@@ -660,39 +630,32 @@ async function verificarCodigo(){
         return;
     }
 
-
     document
     .getElementById("nomeLiberado")
     .textContent =
     resultado.data.nome;
-
 
     document
     .getElementById("cargoLiberado")
     .textContent =
     resultado.data.cargo;
 
-
     document
     .getElementById("senhaVipPublica")
     .textContent =
     vip;
 
-
     document
     .getElementById("codigo")
-    .value="";
-
+    .value = "";
 
     mostrar("areaCodigo");
 }
 
 
-/* =====================================================
-   ABRIR ÁREA DONO ESCONDIDA
-===================================================== */
+/* ÁREA ESCONDIDA */
 
-function cliqueSecreto(){
+function cliqueSecreto() {
 
     cliques++;
 
@@ -700,37 +663,33 @@ function cliqueSecreto(){
 
     timerCliques =
     setTimeout(
-        function(){
-            cliques=0;
+        function() {
+            cliques = 0;
         },
         1800
     );
 
-
-    if(cliques >= 5){
+    if (cliques >= 5) {
 
         document
         .getElementById("loginDono")
-        .style.display="block";
+        .style.display = "block";
 
-        cliques=0;
+        cliques = 0;
     }
 }
 
 
-/* =====================================================
-   ENTRAR NA ÁREA DONO
-===================================================== */
+/* ENTRAR DONO */
 
-async function entrarDono(){
+async function entrarDono() {
 
     const senha =
     document
     .getElementById("senhaDono")
     .value;
 
-
-    if(!senha){
+    if (!senha) {
 
         mensagem(
             "msgDono",
@@ -741,16 +700,14 @@ async function entrarDono(){
         return;
     }
 
-
     const resultado =
     await db
     .from("configuracoes")
     .select("senha_dono")
-    .eq("id",1)
+    .eq("id", 1)
     .single();
 
-
-    if(resultado.error){
+    if (resultado.error) {
 
         console.error(resultado.error);
 
@@ -763,8 +720,7 @@ async function entrarDono(){
         return;
     }
 
-
-    if(senha !== resultado.data.senha_dono){
+    if (senha !== resultado.data.senha_dono) {
 
         mensagem(
             "msgDono",
@@ -775,11 +731,9 @@ async function entrarDono(){
         return;
     }
 
-
     document
     .getElementById("senhaDono")
-    .value="";
-
+    .value = "";
 
     mostrar("donos");
 
@@ -789,11 +743,9 @@ async function entrarDono(){
 }
 
 
-/* =====================================================
-   ADICIONAR MEMBRO
-===================================================== */
+/* ADICIONAR MEMBRO */
 
-async function adicionarMembro(){
+async function adicionarMembro() {
 
     const nome =
     document.getElementById("nome")
@@ -815,14 +767,13 @@ async function adicionarMembro(){
     document.getElementById("novoCodigo")
     .value.trim();
 
-
-    if(
+    if (
         !nome ||
         !jogadorId ||
         !cargo ||
         !instagram ||
         !codigo
-    ){
+    ) {
 
         mensagem(
             "msgAdicionar",
@@ -833,33 +784,30 @@ async function adicionarMembro(){
         return;
     }
 
-
     const resultado =
     await db
     .from("membros")
     .insert({
 
-        nome:nome,
+        nome: nome,
 
-        jogador_id:jogadorId,
+        jogador_id: jogadorId,
 
-        cargo:cargo,
+        cargo: cargo,
 
-        instagram:instagram,
+        instagram: instagram,
 
-        codigo:codigo
+        codigo: codigo
 
     });
 
-
-    if(resultado.error){
+    if (resultado.error) {
 
         console.error(resultado.error);
 
-
-        if(
+        if (
             resultado.error.code === "23505"
-        ){
+        ) {
 
             mensagem(
                 "msgAdicionar",
@@ -867,40 +815,23 @@ async function adicionarMembro(){
                 "erro"
             );
 
-        }else{
+        } else {
 
             mensagem(
                 "msgAdicionar",
                 "Erro ao cadastrar membro.",
                 "erro"
             );
-
         }
 
         return;
     }
 
-
-    document
-    .getElementById("nome")
-    .value="";
-
-    document
-    .getElementById("idPessoa")
-    .value="";
-
-    document
-    .getElementById("cargo")
-    .value="";
-
-    document
-    .getElementById("insta")
-    .value="";
-
-    document
-    .getElementById("novoCodigo")
-    .value="";
-
+    document.getElementById("nome").value = "";
+    document.getElementById("idPessoa").value = "";
+    document.getElementById("cargo").value = "";
+    document.getElementById("insta").value = "";
+    document.getElementById("novoCodigo").value = "";
 
     mensagem(
         "msgAdicionar",
@@ -908,16 +839,13 @@ async function adicionarMembro(){
         "sucesso"
     );
 
-
     carregarMembros();
 }
 
 
-/* =====================================================
-   CARREGAR MEMBROS
-===================================================== */
+/* CARREGAR MEMBROS */
 
-async function carregarMembros(){
+async function carregarMembros() {
 
     const lista =
     document.getElementById("listaMembros");
@@ -925,18 +853,16 @@ async function carregarMembros(){
     lista.innerHTML =
     '<div class="vazio">Carregando...</div>';
 
-
     const resultado =
     await db
     .from("membros")
     .select("*")
     .order(
         "id",
-        {ascending:false}
+        { ascending: false }
     );
 
-
-    if(resultado.error){
+    if (resultado.error) {
 
         console.error(resultado.error);
 
@@ -946,11 +872,10 @@ async function carregarMembros(){
         return;
     }
 
-
-    if(
+    if (
         !resultado.data ||
         resultado.data.length === 0
-    ){
+    ) {
 
         lista.innerHTML =
         '<div class="vazio">Nenhum membro cadastrado.</div>';
@@ -958,9 +883,7 @@ async function carregarMembros(){
         return;
     }
 
-
-    lista.innerHTML="";
-
+    lista.innerHTML = "";
 
     resultado.data.forEach(
         membro => {
@@ -968,8 +891,7 @@ async function carregarMembros(){
             const div =
             document.createElement("div");
 
-            div.className="membro";
-
+            div.className = "membro";
 
             div.innerHTML = `
 
@@ -1007,41 +929,33 @@ async function carregarMembros(){
                     DELETAR
 
                 </button>
-
             `;
 
-
             lista.appendChild(div);
-
         }
     );
 }
 
 
-/* =====================================================
-   DELETAR MEMBRO
-===================================================== */
+/* DELETAR */
 
-async function deletarMembro(id){
+async function deletarMembro(id) {
 
-    if(
+    if (
         !confirm(
             "Deseja realmente deletar este cadastro?"
         )
-    ){
-
+    ) {
         return;
     }
-
 
     const resultado =
     await db
     .from("membros")
     .delete()
-    .eq("id",id);
+    .eq("id", id);
 
-
-    if(resultado.error){
+    if (resultado.error) {
 
         console.error(resultado.error);
 
@@ -1052,9 +966,7 @@ async function deletarMembro(id){
         return;
     }
 
-
     await carregarMembros();
-
 
     alert(
         "Cadastro deletado com sucesso."
@@ -1062,37 +974,31 @@ async function deletarMembro(id){
 }
 
 
-/* =====================================================
-   OBTER SENHA VIP
-===================================================== */
+/* OBTER SENHA VIP */
 
-async function obterVip(){
+async function obterVip() {
 
     const resultado =
     await db
     .from("configuracoes")
     .select("senha_vip")
-    .eq("id",1)
+    .eq("id", 1)
     .single();
 
-
-    if(resultado.error){
+    if (resultado.error) {
 
         console.error(resultado.error);
 
         return null;
     }
 
-
     return resultado.data.senha_vip;
 }
 
 
-/* =====================================================
-   ALTERAR SENHA VIP
-===================================================== */
+/* ALTERAR SENHA VIP */
 
-async function alterarVip(){
+async function alterarVip() {
 
     const nova =
     document
@@ -1100,8 +1006,7 @@ async function alterarVip(){
     .value
     .trim();
 
-
-    if(!nova){
+    if (!nova) {
 
         mensagem(
             "msgVip",
@@ -1112,17 +1017,15 @@ async function alterarVip(){
         return;
     }
 
-
     const resultado =
     await db
     .from("configuracoes")
     .update({
-        senha_vip:nova
+        senha_vip: nova
     })
-    .eq("id",1);
+    .eq("id", 1);
 
-
-    if(resultado.error){
+    if (resultado.error) {
 
         console.error(resultado.error);
 
@@ -1135,14 +1038,11 @@ async function alterarVip(){
         return;
     }
 
-
     document
     .getElementById("novaSenhaVip")
-    .value="";
-
+    .value = "";
 
     await atualizarSenhaVip();
-
 
     mensagem(
         "msgVip",
@@ -1152,17 +1052,14 @@ async function alterarVip(){
 }
 
 
-/* =====================================================
-   MOSTRAR SENHA VIP ATUALIZADA
-===================================================== */
+/* MOSTRAR SENHA VIP */
 
-async function atualizarSenhaVip(){
+async function atualizarSenhaVip() {
 
     const vip =
     await obterVip();
 
-
-    if(vip !== null){
+    if (vip !== null) {
 
         document
         .getElementById("senhaVipAtualizada")
@@ -1172,11 +1069,9 @@ async function atualizarSenhaVip(){
 }
 
 
-/* =====================================================
-   TROCAR SENHA DA ÁREA DONO
-===================================================== */
+/* TROCAR SENHA DONO */
 
-async function trocarSenha(){
+async function trocarSenha() {
 
     const codigo =
     document
@@ -1184,15 +1079,15 @@ async function trocarSenha(){
     .value
     .trim();
 
-
     const nova =
     document
     .getElementById("novaSenhaDono")
     .value
     .trim();
 
-
-    if(codigo !== CODIGO_PROMOCIONAL){
+    if (
+        codigo !== CODIGO_PROMOCIONAL
+    ) {
 
         mensagem(
             "msgTrocar",
@@ -1203,8 +1098,7 @@ async function trocarSenha(){
         return;
     }
 
-
-    if(!nova){
+    if (!nova) {
 
         mensagem(
             "msgTrocar",
@@ -1215,17 +1109,15 @@ async function trocarSenha(){
         return;
     }
 
-
     const resultado =
     await db
     .from("configuracoes")
     .update({
-        senha_dono:nova
+        senha_dono: nova
     })
-    .eq("id",1);
+    .eq("id", 1);
 
-
-    if(resultado.error){
+    if (resultado.error) {
 
         console.error(resultado.error);
 
@@ -1238,15 +1130,13 @@ async function trocarSenha(){
         return;
     }
 
-
     document
     .getElementById("codigoPromocional")
-    .value="";
+    .value = "";
 
     document
     .getElementById("novaSenhaDono")
-    .value="";
-
+    .value = "";
 
     mensagem(
         "msgTrocar",
@@ -1256,20 +1146,15 @@ async function trocarSenha(){
 }
 
 
-/* =====================================================
-   SAIR
-===================================================== */
+/* SAIR */
 
-function sairDono(){
+function sairDono() {
 
     mostrar("principal");
-
 }
 
 
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
+/* INICIALIZAÇÃO */
 
 atualizarSenhaVip();
 
