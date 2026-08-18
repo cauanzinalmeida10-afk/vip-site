@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RESGATE ANTECIPADO DAS SENHAS VIPS GRATIS</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    padding:20px;
+    color:#fff;
+    background:
+        radial-gradient(circle at top,#a855f7,transparent 40%),
+        linear-gradient(135deg,#08000d,#260039,#100018);
+}
+
+.container{
+    max-width:520px;
+    margin:auto;
+}
+
+.tela{
+    display:none;
+}
+
+.tela.ativa{
+    display:block;
+}
+
+.card{
+    background:#190326;
+    border:1px solid #9333ea;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 0 30px #0008;
+}
+
+.icone{
+    width:65px;
+    height:65px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:linear-gradient(135deg,#c026d3,#7e22ce);
+    font-size:30px;
+}
+
+h1{
+    text-align:center;
+    font-size:22px;
+}
+
+h2{
+    text-align:center;
+}
+
+.descricao{
+    text-align:center;
+    color:#e9d5ff;
+    line-height:1.6;
+}
+
+.instagram{
+    color:#f0abfc;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+label{
+    display:block;
+    margin-top:17px;
+    margin-bottom:7px;
+    color:#e9d5ff;
+    font-size:13px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #7e22ce;
+    background:#160021;
+    color:white;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:13px;
+    border:0;
+    border-radius:10px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(135deg,#a855f7,#7e22ce);
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+.voltar{
+    background:transparent;
+    border:1px solid #a855f7;
+}
+
+.mensagem{
+    margin-top:12px;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.erro{
+    color:#fca5a5;
+    background:#ef444418;
+}
+
+.sucesso{
+    color:#86efac;
+    background:#22c55e18;
+}
+
+.vip{
+    margin-top:18px;
+    padding:20px;
+    text-align:center;
+    border-radius:15px;
+    background:#a855f71f;
+    border:1px solid #9333ea;
+}
+
+.vip-titulo{
+    color:#d8b4fe;
+    font-size:13px;
+}
+
+.vip-valor{
+    margin-top:8px;
+    color:#f0abfc;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.secao{
+    margin-top:28px;
+    padding-top:22px;
+    border-top:1px solid #a855f755;
+}
+
+.membro{
+    margin-top:13px;
+    padding:15px;
+    border-radius:12px;
+    background:#581c3533;
+    border:1px solid #a855f755;
+}
+
+.deletar{
+    background:linear-gradient(135deg,#ef4444,#991b1b);
+}
+
+.info{
+    line-height:1.7;
+    color:#e9d5ff;
+    word-break:break-word;
+}
+
+.vazio{
+    text-align:center;
+    color:#c4b5fd;
+    padding:15px;
+}
+
+.secreto{
+    width:55px;
+    padding:5px;
+    margin:20px auto;
+    display:block;
+    font-size:9px;
+    opacity:.25;
+}
+
+#loginDono{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ================= PRINCIPAL ================= -->
+
+<section id="principal" class="tela ativa">
+
+<div class="card">
+
+<div class="icone">👑</div>
+
+<h1>
+RESGATE ANTECIPADO DAS SENHAS VIPS GRATIS
+</h1>
+
+<p class="descricao">
+quer ter a chance de ser ADM ou DIVULGADOR do nosso mapa?
+É só entrar em contato com o dono do mapa no insta
+
+<a
+href="https://www.instagram.com/cauan01/"
+target="_blank"
+class="instagram">
+@cauan01
+</a>
+</p>
+
+<label>
+DIGITAR CODIGO PARA LIBERAR SENHA
+</label>
+
+<input
+id="codigo"
+placeholder="Digite o código"
+autocomplete="off">
+
+<button onclick="verificarCodigo()">
+CONFIRMAR
+</button>
+
+<div id="msgCodigo"></div>
+
+</div>
+
+<!-- Área escondida -->
+
+<button
+class="secreto"
+onclick="cliqueSecreto()">
+cauan01
+</button>
+
+<div id="loginDono">
+
+<div class="card">
+
+<div class="icone">🔐</div>
+
+<h2>
+DESBLOQUEAR AREA DONO
+</h2>
+
+<label>
+DIGITAR SENHA:
+</label>
+
+<input
+id="senhaDono"
+type="password"
+placeholder="Digite a senha">
+
+<button onclick="entrarDono()">
+CONFIRMAR
+</button>
+
+<div id="msgDono"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ÁREA DO CÓDIGO ================= -->
+
+<section id="areaCodigo" class="tela">
+
+<div class="card">
+
+<div class="icone">🔓</div>
+
+<h1>
+AREA DE CÓDIGO DEBLOQUEADO
+</h1>
+
+<p class="descricao">
+
+Bem vindo
+<strong id="nomeLiberado"></strong>
+
+<br>
+
+Do cargo
+<strong id="cargoLiberado"></strong>
+
+<br><br>
+
+vc tera todas a senhas vips antecipadamente através desse site
+
+</p>
+
+<div class="vip">
+
+<div class="vip-titulo">
+SENHA VIP ATUAL:
+</div>
+
+<div
+id="senhaVipPublica"
+class="vip-valor">
+-
+</div>
+
+</div>
+
+<button
+class="voltar"
+onclick="mostrar('principal')">
+VOLTAR
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= ÁREA DOS DONOS ================= -->
+
+<section id="donos" class="tela">
+
+<div class="card">
+
+<div class="icone">👑</div>
+
+<h1>
+AREA DOS DONOS
+</h1>
+
+<p class="descricao">
+somente os sub donos e o dono tem acesso a essa página
+</p>
+
+<button
+class="voltar"
+onclick="sairDono()">
+VOLTAR
+</button>
+
+
+<!-- ADICIONAR CÓDIGOS -->
+
+<div class="secao">
+
+<h2>
+ADICIONAR CÓDIGOS
+</h2>
+
+<label>Nome:</label>
+
+<input
+id="nome"
+placeholder="Nome da pessoa">
+
+<label>ID:</label>
+
+<input
+id="idPessoa"
+placeholder="ID da pessoa">
+
+<label>Cargo:</label>
+
+<input
+id="cargo"
+placeholder="Cargo da pessoa">
+
+<label>@ do insta:</label>
+
+<input
+id="insta"
+placeholder="@ do insta da pessoa">
+
+<label>Código:</label>
+
+<input
+id="novoCodigo"
+placeholder="Código">
+
+<button onclick="adicionarMembro()">
+ADICONAR MEMBRO
+</button>
+
+<div id="msgAdicionar"></div>
+
+</div>
+
+
+<!-- MEMBROS -->
+
+<div class="secao">
+
+<h2>
+MEMBROS
+</h2>
+
+<div id="listaMembros"></div>
+
+</div>
+
+
+<!-- SENHA VIP -->
+
+<div class="secao">
+
+<h2>
+ADICIONAR SENHA VIP
+</h2>
+
+<input
+id="novaSenhaVip"
+placeholder="Nova senha vip">
+
+<button onclick="alterarVip()">
+CONFIRMAR
+</button>
+
+<div id="msgVip"></div>
+
+<div class="vip">
+
+<div class="vip-titulo">
+SENHA VIP ATUALIZADA:
+</div>
+
+<div
+id="senhaVipAtualizada"
+class="vip-valor">
+-
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TROCAR SENHA DONO -->
+
+<div class="secao">
+
+<h2>
+TROCAR SENHA DA AREA DONO
+</h2>
+
+<label>
+CODIGO PROMOCIONAL DO DONO:
+</label>
+
+<input
+id="codigoPromocional"
+type="password"
+placeholder="Código promocional">
+
+<label>
+NOVA SENHA:
+</label>
+
+<input
+id="novaSenhaDono"
+type="password"
+placeholder="Nova senha">
+
+<button onclick="trocarSenha()">
+CONFIRMAR
+</button>
+
+<div id="msgTrocar"></div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"https://wngknfnansykjdquzpwz.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_fH4MM3GdJUprwqbIPY52hQ_zgmsbm2w";
+
+const db =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =====================================================
+   CONFIGURAÇÕES
+===================================================== */
+
+const CODIGO_PROMOCIONAL =
+"0101010101";
+
+let cliques = 0;
+let timerCliques = null;
+
+
+/* =====================================================
+   TROCAR TELA
+===================================================== */
+
+function mostrar(id){
+
+    document
+    .querySelectorAll(".tela")
+    .forEach(
+        tela => tela.classList.remove("ativa")
+    );
+
+    const tela =
+    document.getElementById(id);
+
+    if(tela){
+        tela.classList.add("ativa");
+    }
+
+    window.scrollTo(0,0);
+}
+
+
+/* =====================================================
+   MENSAGENS
+===================================================== */
+
+function mensagem(
+    id,
+    texto,
+    tipo
+){
+
+    const elemento =
+    document.getElementById(id);
+
+    elemento.className =
+    "mensagem " + tipo;
+
+    elemento.textContent =
+    texto;
+}
+
+
+/* =====================================================
+   ESCAPAR TEXTO
+===================================================== */
+
+function escapar(texto){
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    texto ?? "";
+
+    return div.innerHTML;
+}
+
+
+/* =====================================================
+   VERIFICAR CÓDIGO DO MEMBRO
+===================================================== */
+
+async function verificarCodigo(){
+
+    const codigo =
+    document
+    .getElementById("codigo")
+    .value
+    .trim();
+
+    if(!codigo){
+
+        mensagem(
+            "msgCodigo",
+            "Digite um código.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    const resultado =
+    await db
+    .from("membros")
+    .select("*")
+    .eq("codigo",codigo)
+    .maybeSingle();
+
+
+    if(resultado.error){
+
+        console.error(resultado.error);
+
+        mensagem(
+            "msgCodigo",
+            "Erro de conexão com o banco.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    if(!resultado.data){
+
+        mensagem(
+            "msgCodigo",
+            "Código incorreto ou não cadastrado.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    const vip =
+    await obterVip();
+
+
+    if(vip === null){
+
+        mensagem(
+            "msgCodigo",
+            "Não foi possível carregar a senha VIP.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    document
+    .getElementById("nomeLiberado")
+    .textContent =
+    resultado.data.nome;
+
+
+    document
+    .getElementById("cargoLiberado")
+    .textContent =
+    resultado.data.cargo;
+
+
+    document
+    .getElementById("senhaVipPublica")
+    .textContent =
+    vip;
+
+
+    document
+    .getElementById("codigo")
+    .value="";
+
+
+    mostrar("areaCodigo");
+}
+
+
+/* =====================================================
+   ABRIR ÁREA DONO ESCONDIDA
+===================================================== */
+
+function cliqueSecreto(){
+
+    cliques++;
+
+    clearTimeout(timerCliques);
+
+    timerCliques =
+    setTimeout(
+        function(){
+            cliques=0;
+        },
+        1800
+    );
+
+
+    if(cliques >= 5){
+
+        document
+        .getElementById("loginDono")
+        .style.display="block";
+
+        cliques=0;
+    }
+}
+
+
+/* =====================================================
+   ENTRAR NA ÁREA DONO
+===================================================== */
+
+async function entrarDono(){
+
+    const senha =
+    document
+    .getElementById("senhaDono")
+    .value;
+
+
+    if(!senha){
+
+        mensagem(
+            "msgDono",
+            "Digite a senha.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    const resultado =
+    await db
+    .from("configuracoes")
+    .select("senha_dono")
+    .eq("id",1)
+    .single();
+
+
+    if(resultado.error){
+
+        console.error(resultado.error);
+
+        mensagem(
+            "msgDono",
+            "Erro de conexão com o banco.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    if(senha !== resultado.data.senha_dono){
+
+        mensagem(
+            "msgDono",
+            "Senha incorreta.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    document
+    .getElementById("senhaDono")
+    .value="";
+
+
+    mostrar("donos");
+
+    carregarMembros();
+
+    atualizarSenhaVip();
+}
+
+
+/* =====================================================
+   ADICIONAR MEMBRO
+===================================================== */
+
+async function adicionarMembro(){
+
+    const nome =
+    document.getElementById("nome")
+    .value.trim();
+
+    const jogadorId =
+    document.getElementById("idPessoa")
+    .value.trim();
+
+    const cargo =
+    document.getElementById("cargo")
+    .value.trim();
+
+    const instagram =
+    document.getElementById("insta")
+    .value.trim();
+
+    const codigo =
+    document.getElementById("novoCodigo")
+    .value.trim();
+
+
+    if(
+        !nome ||
+        !jogadorId ||
+        !cargo ||
+        !instagram ||
+        !codigo
+    ){
+
+        mensagem(
+            "msgAdicionar",
+            "Preencha todos os campos.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    const resultado =
+    await db
+    .from("membros")
+    .insert({
+
+        nome:nome,
+
+        jogador_id:jogadorId,
+
+        cargo:cargo,
+
+        instagram:instagram,
+
+        codigo:codigo
+
+    });
+
+
+    if(resultado.error){
+
+        console.error(resultado.error);
+
+
+        if(
+            resultado.error.code === "23505"
+        ){
+
+            mensagem(
+                "msgAdicionar",
+                "Esse código já está cadastrado.",
+                "erro"
+            );
+
+        }else{
+
+            mensagem(
+                "msgAdicionar",
+                "Erro ao cadastrar membro.",
+                "erro"
+            );
+
+        }
+
+        return;
+    }
+
+
+    document
+    .getElementById("nome")
+    .value="";
+
+    document
+    .getElementById("idPessoa")
+    .value="";
+
+    document
+    .getElementById("cargo")
+    .value="";
+
+    document
+    .getElementById("insta")
+    .value="";
+
+    document
+    .getElementById("novoCodigo")
+    .value="";
+
+
+    mensagem(
+        "msgAdicionar",
+        "Membro cadastrado com sucesso!",
+        "sucesso"
+    );
+
+
+    carregarMembros();
+}
+
+
+/* =====================================================
+   CARREGAR MEMBROS
+===================================================== */
+
+async function carregarMembros(){
+
+    const lista =
+    document.getElementById("listaMembros");
+
+    lista.innerHTML =
+    '<div class="vazio">Carregando...</div>';
+
+
+    const resultado =
+    await db
+    .from("membros")
+    .select("*")
+    .order(
+        "id",
+        {ascending:false}
+    );
+
+
+    if(resultado.error){
+
+        console.error(resultado.error);
+
+        lista.innerHTML =
+        '<div class="vazio">Erro ao carregar membros.</div>';
+
+        return;
+    }
+
+
+    if(
+        !resultado.data ||
+        resultado.data.length === 0
+    ){
+
+        lista.innerHTML =
+        '<div class="vazio">Nenhum membro cadastrado.</div>';
+
+        return;
+    }
+
+
+    lista.innerHTML="";
+
+
+    resultado.data.forEach(
+        membro => {
+
+            const div =
+            document.createElement("div");
+
+            div.className="membro";
+
+
+            div.innerHTML = `
+
+                <div class="info">
+
+                    <strong>Nome:</strong>
+                    ${escapar(membro.nome)}
+
+                    <br>
+
+                    <strong>ID:</strong>
+                    ${escapar(membro.jogador_id)}
+
+                    <br>
+
+                    <strong>Cargo:</strong>
+                    ${escapar(membro.cargo)}
+
+                    <br>
+
+                    <strong>Instagram:</strong>
+                    ${escapar(membro.instagram)}
+
+                    <br>
+
+                    <strong>Código:</strong>
+                    ${escapar(membro.codigo)}
+
+                </div>
+
+                <button
+                class="deletar"
+                onclick="deletarMembro(${membro.id})">
+
+                    DELETAR
+
+                </button>
+
+            `;
+
+
+            lista.appendChild(div);
+
+        }
+    );
+}
+
+
+/* =====================================================
+   DELETAR MEMBRO
+===================================================== */
+
+async function deletarMembro(id){
+
+    if(
+        !confirm(
+            "Deseja realmente deletar este cadastro?"
+        )
+    ){
+
+        return;
+    }
+
+
+    const resultado =
+    await db
+    .from("membros")
+    .delete()
+    .eq("id",id);
+
+
+    if(resultado.error){
+
+        console.error(resultado.error);
+
+        alert(
+            "Erro ao deletar cadastro."
+        );
+
+        return;
+    }
+
+
+    await carregarMembros();
+
+
+    alert(
+        "Cadastro deletado com sucesso."
+    );
+}
+
+
+/* =====================================================
+   OBTER SENHA VIP
+===================================================== */
+
+async function obterVip(){
+
+    const resultado =
+    await db
+    .from("configuracoes")
+    .select("senha_vip")
+    .eq("id",1)
+    .single();
+
+
+    if(resultado.error){
+
+        console.error(resultado.error);
+
+        return null;
+    }
+
+
+    return resultado.data.senha_vip;
+}
+
+
+/* =====================================================
+   ALTERAR SENHA VIP
+===================================================== */
+
+async function alterarVip(){
+
+    const nova =
+    document
+    .getElementById("novaSenhaVip")
+    .value
+    .trim();
+
+
+    if(!nova){
+
+        mensagem(
+            "msgVip",
+            "Digite uma nova senha VIP.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    const resultado =
+    await db
+    .from("configuracoes")
+    .update({
+        senha_vip:nova
+    })
+    .eq("id",1);
+
+
+    if(resultado.error){
+
+        console.error(resultado.error);
+
+        mensagem(
+            "msgVip",
+            "Erro ao atualizar senha VIP.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    document
+    .getElementById("novaSenhaVip")
+    .value="";
+
+
+    await atualizarSenhaVip();
+
+
+    mensagem(
+        "msgVip",
+        "Senha VIP alterada com sucesso!",
+        "sucesso"
+    );
+}
+
+
+/* =====================================================
+   MOSTRAR SENHA VIP ATUALIZADA
+===================================================== */
+
+async function atualizarSenhaVip(){
+
+    const vip =
+    await obterVip();
+
+
+    if(vip !== null){
+
+        document
+        .getElementById("senhaVipAtualizada")
+        .textContent =
+        vip;
+    }
+}
+
+
+/* =====================================================
+   TROCAR SENHA DA ÁREA DONO
+===================================================== */
+
+async function trocarSenha(){
+
+    const codigo =
+    document
+    .getElementById("codigoPromocional")
+    .value
+    .trim();
+
+
+    const nova =
+    document
+    .getElementById("novaSenhaDono")
+    .value
+    .trim();
+
+
+    if(codigo !== CODIGO_PROMOCIONAL){
+
+        mensagem(
+            "msgTrocar",
+            "Código promocional incorreto.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    if(!nova){
+
+        mensagem(
+            "msgTrocar",
+            "Digite uma nova senha.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    const resultado =
+    await db
+    .from("configuracoes")
+    .update({
+        senha_dono:nova
+    })
+    .eq("id",1);
+
+
+    if(resultado.error){
+
+        console.error(resultado.error);
+
+        mensagem(
+            "msgTrocar",
+            "Erro ao alterar a senha.",
+            "erro"
+        );
+
+        return;
+    }
+
+
+    document
+    .getElementById("codigoPromocional")
+    .value="";
+
+    document
+    .getElementById("novaSenhaDono")
+    .value="";
+
+
+    mensagem(
+        "msgTrocar",
+        "Senha da Área Dono alterada com sucesso!",
+        "sucesso"
+    );
+}
+
+
+/* =====================================================
+   SAIR
+===================================================== */
+
+function sairDono(){
+
+    mostrar("principal");
+
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+atualizarSenhaVip();
+
+</script>
+
+</body>
+</html>
